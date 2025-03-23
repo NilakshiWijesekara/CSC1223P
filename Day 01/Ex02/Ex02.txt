@@ -1,0 +1,46 @@
+Setting environment for using XAMPP for Windows.
+PC@DESKTOP-JFQKA09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database UOVSL;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> use UOVSL
+Database changed
+MariaDB [UOVSL]> create table physician(Physician_ID INT(2),Name VARCHAR(30),Position VARCHAR(30));
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [UOVSL]> DESC physician;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Physician_ID | int(2)      | YES  |     | NULL    |       |
+| Name         | varchar(30) | YES  |     | NULL    |       |
+| Position     | varchar(30) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.013 sec)
+
+MariaDB [UOVSL]> INSERT INTO physician VALUES('1','John Dorian','staff Internist'),('2','Elliot Reid','Attending Physician'),('3','Christopher Turk','Surgical Attending Physician'),('4','Percival Cox','Senior Attending Physician'),('5','Keith Dudemeister','MID Resident'),('6','Molly Clock','Attending Psychiatrist');
+Query OK, 6 rows affected (0.056 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [UOVSL]> select * from physician;
++--------------+-------------------+------------------------------+
+| Physician_ID | Name              | Position                     |
++--------------+-------------------+------------------------------+
+|            1 | John Dorian       | staff Internist              |
+|            2 | Elliot Reid       | Attending Physician          |
+|            3 | Christopher Turk  | Surgical Attending Physician |
+|            4 | Percival Cox      | Senior Attending Physician   |
+|            5 | Keith Dudemeister | MID Resident                 |
+|            6 | Molly Clock       | Attending Psychiatrist       |
++--------------+-------------------+------------------------------+
+6 rows in set (0.001 sec)

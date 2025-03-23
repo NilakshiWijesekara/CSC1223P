@@ -1,0 +1,164 @@
+2022ASP70@CL2-32 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+MariaDB [(none)]> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| bookboat           |
+| bookdb             |
+| bookstore          |
+| company            |
+| company1           |
+| homeheaven         |
+| hospital           |
+| icacompany         |
+| icae02             |
+| information_schema |
+| librarydb          |
+| libraysystem       |
+| moviedb            |
+| mysql              |
+| name               |
+| parking_system     |
+| performance_schema |
+| phpmyadmin         |
+| retailstores       |
+| school             |
+| spjbase            |
+| student            |
+| student_db         |
+| studentdb          |
+| test               |
++--------------------+
+26 rows in set (0.049 sec)
+
+MariaDB [(none)]> create database UOV;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> SHOW databases
+    ->
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| bookboat           |
+| bookdb             |
+| bookstore          |
+| company            |
+| company1           |
+| homeheaven         |
+| hospital           |
+| icacompany         |
+| icae02             |
+| information_schema |
+| librarydb          |
+| libraysystem       |
+| moviedb            |
+| mysql              |
+| name               |
+| parking_system     |
+| performance_schema |
+| phpmyadmin         |
+| retailstores       |
+| school             |
+| spjbase            |
+| student            |
+| student_db         |
+| studentdb          |
+| test               |
+| uov                |
++--------------------+
+27 rows in set (0.001 sec)
+
+
+MariaDB [UOV]> create table students(std_id CHAR(15),name VARCHAR(30),course VARCHAR(30),Dob DATE,city VARCHAR(20));
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [UOV]> DESC students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| std_id | char(15)    | YES  |     | NULL    |       |
+| name   | varchar(30) | YES  |     | NULL    |       |
+| course | varchar(30) | YES  |     | NULL    |       |
+| Dob    | date        | YES  |     | NULL    |       |
+| city   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.015 sec)
+
+MariaDB [UOV]> INSERT INTO students VALUES('2022/ASP/70','Nilakshi','AMC',2003-03-16,'Mirigama');
+Query OK, 1 row affected, 1 warning (0.036 sec)
+
+MariaDB [UOV]> select * from students;
++-------------+----------+--------+------------+----------+
+| std_id      | name     | course | Dob        | city     |
++-------------+----------+--------+------------+----------+
+| 2022/ASP/70 | Nilakshi | AMC    | 0000-00-00 | Mirigama |
++-------------+----------+--------+------------+----------+
+1 row in set (0.000 sec)
+
+MariaDB [UOV]> INSERT INTO students VALUES('202ASP70','Nilakshi','AMC',2003-05-16,'Vavuniya');
+Query OK, 1 row affected, 1 warning (0.005 sec)
+
+MariaDB [UOV]> select * from students;
++-------------+----------+--------+------------+----------+
+| std_id      | name     | course | Dob        | city     |
++-------------+----------+--------+------------+----------+
+| 2022/ASP/70 | Nilakshi | AMC    | 0000-00-00 | Mirigama |
+| 202ASP70    | Nilakshi | AMC    | 0000-00-00 | Vavuniya |
++-------------+----------+--------+------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [UOV]> INSERT INTO students VALUES('2022/ASP/73','Nawoda','AMC',2003-04-14,'Anuradhapura');
+Query OK, 1 row affected, 1 warning (0.004 sec)
+
+MariaDB [UOV]> select * from students;
++-------------+----------+--------+------------+--------------+
+| std_id      | name     | course | Dob        | city         |
++-------------+----------+--------+------------+--------------+
+| 2022/ASP/70 | Nilakshi | AMC    | 0000-00-00 | Mirigama     |
+| 202ASP70    | Nilakshi | AMC    | 0000-00-00 | Vavuniya     |
+| 2022/ASP/73 | Nawoda   | AMC    | 0000-00-00 | Anuradhapura |
++-------------+----------+--------+------------+--------------+
+3 rows in set (0.000 sec)
+
+MariaDB [UOV]> INSERT INTO students VALUES('2022/ASB/78','Subhashini','ES',2001-07-11,'Walimada');
+Query OK, 1 row affected, 1 warning (0.004 sec)
+
+MariaDB [UOV]> select * from students;
++-------------+------------+--------+------------+--------------+
+| std_id      | name       | course | Dob        | city         |
++-------------+------------+--------+------------+--------------+
+| 2022/ASP/70 | Nilakshi   | AMC    | 0000-00-00 | Mirigama     |
+| 202ASP70    | Nilakshi   | AMC    | 0000-00-00 | Vavuniya     |
+| 2022/ASP/73 | Nawoda     | AMC    | 0000-00-00 | Anuradhapura |
+| 2022/ASB/78 | Subhashini | ES     | 0000-00-00 | Walimada     |
++-------------+------------+--------+------------+--------------+
+4 rows in set (0.000 sec)
+
+MariaDB [UOV]> INSERT INTO students VALUES('2022/ASP/73','Nawoda','AMC','2003-04-14','Anuradhapura');
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [UOV]> select * from students;
++-------------+------------+--------+------------+--------------+
+| std_id      | name       | course | Dob        | city         |
++-------------+------------+--------+------------+--------------+
+| 2022/ASP/70 | Nilakshi   | AMC    | 0000-00-00 | Mirigama     |
+| 202ASP70    | Nilakshi   | AMC    | 0000-00-00 | Vavuniya     |
+| 2022/ASP/73 | Nawoda     | AMC    | 0000-00-00 | Anuradhapura |
+| 2022/ASB/78 | Subhashini | ES     | 0000-00-00 | Walimada     |
+| 2022/ASP/73 | Nawoda     | AMC    | 2003-04-14 | Anuradhapura |
++-------------+------------+--------+------------+--------------+
+5 rows in set (0.000 sec)

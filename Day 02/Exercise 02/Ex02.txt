@@ -1,0 +1,5 @@
+LOAD DATA LOCAL INFILE'C:/Users/PC/Desktop/Ex02 Excel/Ex002.csv'
+INTO TABLE Office
+FIELDS TERMINATED By ','
+LINES TERMINATED By '\n'
+(ID,Name,Age,Grade,City);

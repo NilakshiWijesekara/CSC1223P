@@ -1,0 +1,108 @@
+Setting environment for using XAMPP for Windows.
+PC@DESKTOP-JFQKA09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database UOV;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> SHOW databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| uov                |
+| uovsl              |
++--------------------+
+7 rows in set (0.031 sec)
+
+MariaDB [(none)]> USE UOV;
+Database changed
+MariaDB [UOV]> create table patients(Patient_ID INT primary key,Name VARCHAR(30),Address VARCHAR(30),Phone VARCHAR(30));
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [UOV]> DESC patients;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Patient_ID | int(11)     | NO   | PRI | NULL    |       |
+| Name       | varchar(30) | YES  |     | NULL    |       |
+| Address    | varchar(30) | YES  |     | NULL    |       |
+| Phone      | varchar(30) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.014 sec)
+
+MariaDB [UOV]> INSERT INTO patients(Patient_ID,Name,Address,Phone)VALUES(100000001,'Jhon Smith','42 Foobar Lane','555-0256'),(100000002,'Grace Ritchie','37 Snafu Drive','555-0512'),(100000003,'Todd Quinian','101 omgbbq street','555-1204'),(100000004,'Dennis Doe','1100 Foobaz Avenue','555-2048');
+Query OK, 4 rows affected (0.056 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [UOV]> select * from patients;
++------------+---------------+--------------------+----------+
+| Patient_ID | Name          | Address            | Phone    |
++------------+---------------+--------------------+----------+
+|  100000001 | Jhon Smith    | 42 Foobar Lane     | 555-0256 |
+|  100000002 | Grace Ritchie | 37 Snafu Drive     | 555-0512 |
+|  100000003 | Todd Quinian  | 101 omgbbq street  | 555-1204 |
+|  100000004 | Dennis Doe    | 1100 Foobaz Avenue | 555-2048 |
++------------+---------------+--------------------+----------+
+4 rows in set (0.000 sec)
+
+MariaDB [UOV]> DELETE From patients;
+Query OK, 4 rows affected (0.004 sec)
+
+MariaDB [UOV]> select * from patients;
+Empty set (0.000 sec)
+
+MariaDB [UOV]> TRUNCATE table patients;
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [UOV]> SHOW tables;
++---------------+
+| Tables_in_uov |
++---------------+
+| patients      |
++---------------+
+1 row in set (0.001 sec)
+
+MariaDB [UOV]> DESC patients;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Patient_ID | int(11)     | NO   | PRI | NULL    |       |
+| Name       | varchar(30) | YES  |     | NULL    |       |
+| Address    | varchar(30) | YES  |     | NULL    |       |
+| Phone      | varchar(30) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.015 sec)
+
+MariaDB [UOV]> DROP table patients;
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [UOV]> SHOW tables;
+Empty set (0.001 sec)
+
+MariaDB [UOV]>
+
+
+
+
+
+
+
+
+
+
+
+

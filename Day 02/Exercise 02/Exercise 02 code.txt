@@ -1,0 +1,94 @@
+Setting environment for using XAMPP for Windows.
+PC@DESKTOP-JFQKA09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use UOV
+Database changed
+
+MariaDB [UOV]> create table office(ID INT(5),Name VARCHAR(20),Age INT(2),Grade CHAR(1),City VARCHAR(20));
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [UOV]> LOAD DATA LOCAL INFILE'C:/Users/PC/Desktop/Ex02 Excel/Ex002.csv'
+    -> INTO TABLE Office
+    -> FIELDS TERMINATED By ','
+    -> LINES TERMINATED By '\n'
+    -> (ID,Name,Age,Grade,City);
+Query OK, 6 rows affected (0.004 sec)
+Records: 6  Deleted: 0  Skipped: 0  Warnings: 0
+
+MariaDB [UOV]> select * from office;
++------+---------+------+-------+-------------+
+| ID   | Name    | Age  | Grade | City        |
++------+---------+------+-------+-------------+
+   | 1 | Alice   |   20 | A     | New York
+    |2 | Bob     |   22 | B     | Chicago
+   | 3 | Charlie |   21 | A     | New York
+     | | David   |   23 | c     | Boston
+    |5 | Emma    |   22 | B     | Chicago
+|    6 | Frank   |   20 | A     | Los Angeles |
++------+---------+------+-------+-------------+
+6 rows in set (0.005 sec)
+
+MariaDB [UOV]>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

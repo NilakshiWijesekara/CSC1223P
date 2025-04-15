@@ -1,0 +1,142 @@
+Setting environment for using XAMPP for Windows.
+PC@DESKTOP-JFQKA09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| uov                |
+| uovsl              |
++--------------------+
+7 rows in set (0.018 sec)
+
+MariaDB [(none)]> use UOV
+Database changed
+MariaDB [UOV]> create table employee(emp_ID INT primary key,name VARCHAR(10),age INT(2),department VARCHAR(10),salary DECIMAL(7,2),city VARCHAR(20));
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [UOV]> DESC employee;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| emp_ID     | int(11)      | NO   | PRI | NULL    |       |
+| name       | varchar(10)  | YES  |     | NULL    |       |
+| age        | int(2)       | YES  |     | NULL    |       |
+| department | varchar(10)  | YES  |     | NULL    |       |
+| salary     | decimal(7,2) | YES  |     | NULL    |       |
+| city       | varchar(20)  | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+6 rows in set (0.017 sec)
+
+MariaDB [UOV]> INSERT INTO employee VALUES(101,'Alice',30,'HR',60000.00,'New Yrok'),(102,'Bob',28,'IT',75000.00,'Los Angeles'),(103,'Charlie',35,'Finance',80000.00,'Chicago'),(104,'David',40,'IT',90000.00,'San Francisco'),(105,'Emma',32,'Maketing',90000.00,'New York'),(106,'Frank',27,'HR',50000.00,'Chicago');
+Query OK, 6 rows affected (0.057 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+1.Write a query to display all the records from the employee table
+MariaDB [UOV]> select * from employee;
++--------+---------+------+------------+----------+---------------+
+| emp_ID | name    | age  | department | salary   | city          |
++--------+---------+------+------------+----------+---------------+
+|    101 | Alice   |   30 | HR         | 60000.00 | New Yrok      |
+|    102 | Bob     |   28 | IT         | 75000.00 | Los Angeles   |
+|    103 | Charlie |   35 | Finance    | 80000.00 | Chicago       |
+|    104 | David   |   40 | IT         | 90000.00 | San Francisco |
+|    105 | Emma    |   32 | Maketing   | 90000.00 | New York      |
+|    106 | Frank   |   27 | HR         | 50000.00 | Chicago       |
++--------+---------+------+------------+----------+---------------+
+6 rows in set (0.002 sec)
+
+2.Retrieve only the name and salary of all employee
+MariaDB [UOV]>  SELECT name,salary FROM employee;
++---------+----------+
+| name    | salary   |
++---------+----------+
+| Alice   | 60000.00 |
+| Bob     | 75000.00 |
+| Charlie | 80000.00 |
+| David   | 90000.00 |
+| Emma    | 90000.00 |
+| Frank   | 50000.00 |
++---------+----------+
+6 rows in set (0.027 sec)
+
+3.Select unique department names from the employee table
+MariaDB [UOV]> SELECT DISTINCT department FROM employee;
++------------+
+| department |
++------------+
+| HR         |
+| IT         |
+| Finance    |
+| Maketing   |
++------------+
+4 rows in set (0.008 sec)
+
+4.Find employee who work in the "IT" department
+MariaDB [UOV]> SELECT * FROM employee WHERE department='IT';
++--------+-------+------+------------+----------+---------------+
+| emp_ID | name  | age  | department | salary   | city          |
++--------+-------+------+------------+----------+---------------+
+|    102 | Bob   |   28 | IT         | 75000.00 | Los Angeles   |
+|    104 | David |   40 | IT         | 90000.00 | San Francisco |
++--------+-------+------+------------+----------+---------------+
+2 rows in set (0.002 sec)
+
+5.Retrieve employee who have a salary greater than 70000
+MariaDB [UOV]>  SELECT * FROM employee WHERE salary>70000;
++--------+---------+------+------------+----------+---------------+
+| emp_ID | name    | age  | department | salary   | city          |
++--------+---------+------+------------+----------+---------------+
+|    102 | Bob     |   28 | IT         | 75000.00 | Los Angeles   |
+|    103 | Charlie |   35 | Finance    | 80000.00 | Chicago       |
+|    104 | David   |   40 | IT         | 90000.00 | San Francisco |
+|    105 | Emma    |   32 | Maketing   | 90000.00 | New York      |
++--------+---------+------+------------+----------+---------------+
+4 rows in set (0.000 sec)
+
+6.Select employee who are between 30and 40 years old
+MariaDB [UOV]> SELECT name FROM employee WHERE age BETWEEN 30 AND 40;
++---------+
+| name    |
++---------+
+| Alice   |
+| Charlie |
+| David   |
+| Emma    |
++---------+
+4 rows in set (0.001 sec)
+
+7.Find employee who are located in either "New York" or "Chicago" 
+MariaDB [UOV]>  SELECT name FROM employee WHERE city='New York' OR city='Chicago';
++---------+
+| name    |
++---------+
+| Charlie |
+| Emma    |
+| Frank   |
++---------+
+3 rows in set (0.002 sec)
+
+MariaDB [UOV]> SELECT name FROM employee WHERE city IN ('New York','Chicago');
++---------+
+| name    |
++---------+
+| Charlie |
+| Emma    |
+| Frank   |
++---------+
+3 rows in set (0.001 sec)

@@ -1,0 +1,231 @@
+Setting environment for using XAMPP for Windows.
+PC@DESKTOP-JFQKA09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| uov                |
+| uovsl              |
++--------------------+
+7 rows in set (0.019 sec)
+
+MariaDB [(none)]> use UOV
+Database changed
+MariaDB [UOV]> create table product(Product_ID INT primary key,Name VARCHAR(20),Category VARCHAR(20),Price INT(5),StockQuality INT(5));
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [UOV]> DESC product;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Product_ID   | int(11)     | NO   | PRI | NULL    |       |
+| Name         | varchar(20) | YES  |     | NULL    |       |
+| Category     | varchar(20) | YES  |     | NULL    |       |
+| Price        | int(5)      | YES  |     | NULL    |       |
+| StockQuality | int(5)      | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.017 sec)
+
+MariaDB [UOV]> INSERT INTO product VALUES(1,'Ultra HD Television','Electronic',1200,30),(2,'Running Shoes','Footwear',100,50),(3,'Electric Kettle','Appliences',45,25),(4,'Denim Jeans','Clothing',60,40),(5,'Bluetooth Headphones','Electronic',150,15);
+Query OK, 5 rows affected (0.072 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [UOV]> select * from product;
++------------+----------------------+------------+-------+--------------+
+| Product_ID | Name                 | Category   | Price | StockQuality |
++------------+----------------------+------------+-------+--------------+
+|          1 | Ultra HD Television  | Electronic |  1200 |           30 |
+|          2 | Running Shoes        | Footwear   |   100 |           50 |
+|          3 | Electric Kettle      | Appliences |    45 |           25 |
+|          4 | Denim Jeans          | Clothing   |    60 |           40 |
+|          5 | Bluetooth Headphones | Electronic |   150 |           15 |
++------------+----------------------+------------+-------+--------------+
+5 rows in set (0.002 sec)
+
+MariaDB [UOV]> create table customer(Customer_ID INT primary key,Full_Name VARCHAR(30),Registration_Date Date,Phone_Number VARCHAR(30));
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [UOV]> DESC customer;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| Customer_ID       | int(11)     | NO   | PRI | NULL    |       |
+| Full_Name         | varchar(30) | YES  |     | NULL    |       |
+| Registration_Date | date        | YES  |     | NULL    |       |
+| Phone_Number      | varchar(30) | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.015 sec)
+
+MariaDB [UOV]> INSERT INTO customer VALUES(1,'Alice Johnson','2021-03-15','+1234567890'),(2,'Bob Smith','2020-08-24','+0987654321'),(3,'Carol Brown','2020-01-10','+1122334455'),(4,'Dave Wilson','2022-07-02','+2233445566'),(5,'Eve Davis','2020-11-29','+3344556677');
+Query OK, 5 rows affected (0.004 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [UOV]> select * from customer;
++-------------+---------------+-------------------+--------------+
+| Customer_ID | Full_Name     | Registration_Date | Phone_Number |
++-------------+---------------+-------------------+--------------+
+|           1 | Alice Johnson | 2021-03-15        | +1234567890  |
+|           2 | Bob Smith     | 2020-08-24        | +0987654321  |
+|           3 | Carol Brown   | 2020-01-10        | +1122334455  |
+|           4 | Dave Wilson   | 2022-07-02        | +2233445566  |
+|           5 | Eve Davis     | 2020-11-29        | +3344556677  |
++-------------+---------------+-------------------+--------------+
+5 rows in set (0.000 sec)
+
+MariaDB [UOV]> create table sales(Sale_ID INT primary key,Product_ID INT,Customer_ID INT,SaleDate DATE,QuantitySold INT);
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [UOV]> DESC sales;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| Sale_ID      | int(11) | NO   | PRI | NULL    |       |
+| Product_ID   | int(11) | YES  |     | NULL    |       |
+| Customer_ID  | int(11) | YES  |     | NULL    |       |
+| SaleDate     | date    | YES  |     | NULL    |       |
+| QuantitySold | int(11) | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+5 rows in set (0.011 sec)
+
+MariaDB [UOV]> INSERT INTO sales VALUES(1,1,1,'2023-06-15',1),(2,2,2,'2023-06-18',2),(3,3,3,'2023-06-20',1),(4,4,4,'2023-06-25',3),(5,5,5,'2023-06-30',2);
+Query OK, 5 rows affected (0.003 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [UOV]> select * from sales;
++---------+------------+-------------+------------+--------------+
+| Sale_ID | Product_ID | Customer_ID | SaleDate   | QuantitySold |
++---------+------------+-------------+------------+--------------+
+|       1 |          1 |           1 | 2023-06-15 |            1 |
+|       2 |          2 |           2 | 2023-06-18 |            2 |
+|       3 |          3 |           3 | 2023-06-20 |            1 |
+|       4 |          4 |           4 | 2023-06-25 |            3 |
+|       5 |          5 |           5 | 2023-06-30 |            2 |
++---------+------------+-------------+------------+--------------+
+5 rows in set (0.000 sec)
+
+a) Select name from the table Products.
+
+MariaDB [UOV]> select Name from product;
++----------------------+
+| Name                 |
++----------------------+
+| Ultra HD Television  |
+| Running Shoes        |
+| Electric Kettle      |
+| Denim Jeans          |
+| Bluetooth Headphones |
++----------------------+
+5 rows in set (0.001 sec)
+
+b)Select CustomerID and RegistrationDate from the table customer.
+
+MariaDB [UOV]> select Customer_ID,Registration_Date from customer;
++-------------+-------------------+
+| Customer_ID | Registration_Date |
++-------------+-------------------+
+|           1 | 2021-03-15        |
+|           2 | 2020-08-24        |
+|           3 | 2020-01-10        |
+|           4 | 2022-07-02        |
+|           5 | 2020-11-29        |
++-------------+-------------------+
+5 rows in set (0.000 sec)
+
+c)Select SaleID and SaleDate if QuantitySold is 2 from the table sales.
+
+MariaDB [UOV]> select Sale_ID,SaleDate from sales WHERE QuantitySold=2;
++---------+------------+
+| Sale_ID | SaleDate   |
++---------+------------+
+|       2 | 2023-06-18 |
+|       5 | 2023-06-30 |
++---------+------------+
+2 rows in set (0.004 sec)
+
+d)Find the product names that sell the price greater than 100.
+
+MariaDB [UOV]> select Name from product WHERE price>100;
++----------------------+
+| Name                 |
++----------------------+
+| Ultra HD Television  |
+| Bluetooth Headphones |
++----------------------+
+2 rows in set (0.002 sec)
+
+e)Find the CustomerID whose registration date is before 2021.
+
+MariaDB [UOV]> select Customer_ID from customer WHERE YEAR(Registration_Date)<'2021';
++-------------+
+| Customer_ID |
++-------------+
+|           2 |
+|           3 |
+|           5 |
++-------------+
+3 rows in set (0.002 sec)
+
+f)Find unique categories from the product table.
+
+MariaDB [UOV]> select DISTINCT Category from product;
++------------+
+| Category   |
++------------+
+| Electronic |
+| Footwear   |
+| Appliences |
+| Clothing   |
++------------+
+4 rows in set (0.001 sec)
+
+g)Update the price of Electric Kettle to 145 in the product table.
+
+MariaDB [UOV]> UPDATE product set Price=145 WHERE price=45;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [UOV]> select * from product;
++------------+----------------------+------------+-------+--------------+
+| Product_ID | Name                 | Category   | Price | StockQuality |
++------------+----------------------+------------+-------+--------------+
+|          1 | Ultra HD Television  | Electronic |  1200 |           30 |
+|          2 | Running Shoes        | Footwear   |   100 |           50 |
+|          3 | Electric Kettle      | Appliences |   145 |           25 |
+|          4 | Denim Jeans          | Clothing   |    60 |           40 |
+|          5 | Bluetooth Headphones | Electronic |   150 |           15 |
++------------+----------------------+------------+-------+--------------+
+5 rows in set (0.001 sec)
+
+h)Delete the data from the table customer,who has the customerID 3.
+
+MariaDB [UOV]> DELETE from customer WHERE Customer_ID = 3;
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [UOV]> select * from customer;
++-------------+---------------+-------------------+--------------+
+| Customer_ID | Full_Name     | Registration_Date | Phone_Number |
++-------------+---------------+-------------------+--------------+
+|           1 | Alice Johnson | 2021-03-15        | +1234567890  |
+|           2 | Bob Smith     | 2020-08-24        | +0987654321  |
+|           4 | Dave Wilson   | 2022-07-02        | +2233445566  |
+|           5 | Eve Davis     | 2020-11-29        | +3344556677  |
++-------------+---------------+-------------------+--------------+
+4 rows in set (0.000 sec)
+
+
+
